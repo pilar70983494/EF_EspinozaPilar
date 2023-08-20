@@ -3,18 +3,18 @@ const {useState, useEffect} = require('react');
 const { Link, useParams } = require('react-router-dom');
 const client = require('../client');
 
-const EditarInstrumentoPage = () => {
+const EditarProductoPage = () => {
 
-    const [instrumento, setInstrumento] = useState({});
+    const [producto, setProducto] = useState({});
 
     let { id } = useParams();
 
     useEffect(() => {
         client({
             method: 'GET',
-            path: '/api/instrumentos/' + id
+            path: '/api/productos/' + id
         }).done(response => {
-            setInstrumento(response.entity);
+            setProducto(response.entity);
         })
     }, [])
 
@@ -22,8 +22,8 @@ const EditarInstrumentoPage = () => {
         event.preventDefault();
         client({
             method: 'PATCH',
-            path: '/api/instrumentos/' + id,
-            entity: instrumento,
+            path: '/api/productos/' + id,
+            entity: producto,
             headers: {'Content-Type': 'application/json'}
         }).done(() => window.location = "/");
     }
@@ -31,15 +31,15 @@ const EditarInstrumentoPage = () => {
 
     return (
         <>
-            <h1>Editar Instrumento</h1>
+            <h1>Editar Productos</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="nombre">Nombre</label>
-                <input type="text" id="nombre" name="nombre" value={instrumento.nombre} onChange={(e)=>setInstrumento({...instrumento, nombre: e.target.value})} />
+                <input type="text" id="nombre" name="nombre" value={producto.nombre} onChange={(e)=>setProducto({...producto, nombre: e.target.value})} />
                 <label htmlFor="categoria">Categoría</label>
-                <input type="text" id="categoria" name="categoria" value={instrumento.categoria} onChange={(e)=>setInstrumento({...instrumento, categoria: e.target.value})} />
+                <input type="text" id="categoria" name="categoria" value={producto.categoria} onChange={(e)=>setProducto({...producto, categoria: e.target.value})} />
                 <label htmlFor="descripcion">Descripción</label>
-                <input type="text" id="descripcion" name="descripcion" value={instrumento.descripcion} onChange={(e)=>setInstrumento({...instrumento, descripcion: e.target.value})} />
-                <input type="submit" value="Editar Instrumento" />
+                <input type="text" id="descripcion" name="descripcion" value={producto.descripcion} onChange={(e)=>setProducto({...producto, descripcion: e.target.value})} />
+                <input type="submit" value="Editar Producto" />
             </form>
             <hr />
             <Link to="/">Volver</Link>
@@ -47,4 +47,4 @@ const EditarInstrumentoPage = () => {
     );
 }
 
-module.exports = EditarInstrumentoPage;
+module.exports = EditarProductoPage;
