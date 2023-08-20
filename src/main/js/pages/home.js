@@ -5,45 +5,45 @@ const {Link} = require('react-router-dom');
 class PageHome extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { instrumentos: [], musicos: [], bandas: [] };
+		this.state = { productos: [], clientes: [], vendedor: [] };
 	}
 	componentDidMount() {
-		client({ method: 'GET', path: '/api/instrumentos' }).done(response => {
-			this.setState({ instrumentos: response.entity._embedded.instrumentos });
+		client({ method: 'GET', path: '/api/productos' }).done(response => {
+			this.setState({ productos: response.entity._embedded.productos });
 		});
-		client({ method: 'GET', path: '/api/musicos' }).done(response => {
-			this.setState({ musicos: response.entity._embedded.musicos });
+		client({ method: 'GET', path: '/api/productos' }).done(response => {
+			this.setState({ clientes: response.entity._embedded.clientes });
 		});
 		client({ method: 'GET', path: '/api/bandas' }).done(response => {
-			this.setState({ bandas: response.entity._embedded.bandas });
+			this.setState({ vendedores: response.entity._embedded.vendedores });
 		});
 	}
 	render() {
 		return (
 			<>
-                <h1>Aplicación Demo</h1>
+                <h1>Tecnologia</h1>
 
 				<div style={{"width": "100%","display": "flex"}} >
 
 					<div style={{"width": "calc(100%/3)"}}>
-						<Titulo entidad="Instrumento" emoji="🎸" />
-						<InstrumentoList instrumentos={this.state.instrumentos} />
+						<Titulo entidad="Producto" emoji="🎸" />
+						<ProductoList productos={this.state.productos} />
 						<br />
-						<Link to="/nuevo-instrumento">Nuevo Instrumento</Link>
+						<Link to="/nuevo-producto">Nuevo Producto</Link>
 					</div>
 
 					<div style={{"width": "calc(100%/3)"}}>
-						<Titulo entidad="Músico" emoji="🎵" />
-						<MusicoList musicos={this.state.musicos} />
+						<Titulo entidad="Cliente" emoji="🎵" />
+						<ClienteList clientes={this.state.clientes} />
 						<br />
-						<Link to="/nuevo-musico">Nuevo Músico</Link>
+						<Link to="/nuevo-cliente">Nuevo Cliente</Link>
 					</div>
 
 					<div style={{"width": "calc(100%/3)"}}>
-						<Titulo entidad="Banda" emoji="👩🏼‍🎤" />
-						<BandaList bandas={this.state.bandas} />
+						<Titulo entidad="Vendedor" emoji="👩🏼‍🎤" />
+						<VendedorList vendedores={this.state.vendedores} />
 						<br />
-						<Link to="/nueva-banda">Nueva Banda</Link>
+						<Link to="/nuevo-vendedor">Nuevo Vendedor</Link>
 					</div>
 
 				</div>
@@ -67,10 +67,10 @@ const Titulo = (props) => {
 }
 
 
-class InstrumentoList extends React.Component {
+class ProductoList extends React.Component {
 	render() {
-		const instrumentos = this.props.instrumentos.map(instrumento =>
-			<Instrumento key={instrumento._links.self.href} instrumento={instrumento} />
+		const productos = this.props.productos.map(producto =>
+			<Producto key={producto._links.self.href} producto={producto} />
 		);
 		return (
 			<table border="1">
@@ -81,16 +81,16 @@ class InstrumentoList extends React.Component {
 						<th>Descripción</th>
 						<th>Acciones</th>
 					</tr>
-					{instrumentos}
+					{productos}
 				</tbody>
 			</table>
 		)
 	}
 }
-class MusicoList extends React.Component {
+class ClienteList extends React.Component {
 	render() {
-		const musicos = this.props.musicos.map(musico =>
-			<Musico key={musico._links.self.href} musico={musico} />
+		const clientes = this.props.clientes.map(cliente =>
+			<Cliente key={cliente._links.self.href} cliente={cliente} />
 		);
 		return (
 			<table border="1">
@@ -99,16 +99,16 @@ class MusicoList extends React.Component {
 						<th>Nombre</th>
 						<th>Acciones</th>
 					</tr>
-					{musicos}
+					{clientes}
 				</tbody>
 			</table>
 		)
 	}
 }
-class BandaList extends React.Component {
+class VendedorList extends React.Component {
 	render() {
-		const bandas = this.props.bandas.map(banda =>
-			<Banda key={banda._links.self.href} banda={banda} />
+		const vendedores = this.props.vendedores.map(vendedor =>
+			<Vendedor key={vendedor._links.self.href} vendedor={vendedor} />
 		);
 		return (
 			<table border="1">
@@ -117,49 +117,49 @@ class BandaList extends React.Component {
 						<th>Nombre</th>
 						<th>Acciones</th>
 					</tr>
-					{bandas}
+					{vendedores}
 				</tbody>
 			</table>
 		)
 	}
 }
 
-class Instrumento extends React.Component {
+class Producto extends React.Component {
 	render() {
-		const id = this.props.instrumento._links.self.href.split('/').slice(-1);
+		const id = this.props.producto._links.self.href.split('/').slice(-1);
 		return (
 			<tr>
-				<td>{this.props.instrumento.nombre}</td>
-				<td>{this.props.instrumento.categoria}</td>
-				<td>{this.props.instrumento.descripcion}</td>
+				<td>{this.props.producto.nombre}</td>
+				<td>{this.props.producto.categoria}</td>
+				<td>{this.props.producto.descripcion}</td>
 				<td>
-					<Link to={'/editar-instrumento/'+id}>Editar</Link>
+					<Link to={'/editar-producto/'+id}>Editar</Link>
 				</td>
 			</tr>
 		)
 	}
 }
-class Musico extends React.Component {
+class Cliente extends React.Component {
 	render() {
-		const id = this.props.musico._links.self.href.split("/").slice(-1);
+		const id = this.props.cliente._links.self.href.split("/").slice(-1);
 		return (
 			<tr>
-				<td>{this.props.musico.nombre}</td>
+				<td>{this.props.cliente.nombre}</td>
 				<td>
-					<Link to={`/editar-musico/${id}`}>Editar</Link>
+					<Link to={`/editar-cliente/${id}`}>Editar</Link>
 				</td>
 			</tr>
 		)
 	}
 }
-class Banda extends React.Component {
+class Vendedor extends React.Component {
 	render() {
-		const id = this.props.banda._links.self.href.split("/").slice(-1);
+		const id = this.props.vendedor._links.self.href.split("/").slice(-1);
 		return (
 			<tr>
-				<td>{this.props.banda.nombre}</td>
+				<td>{this.props.vendedor.nombre}</td>
 				<td>
-					<Link to={`/ver-banda/${id}`}>Ver</Link>
+					<Link to={`/ver-vendedor/${id}`}>Ver</Link>
 				</td>
 			</tr>
 		)

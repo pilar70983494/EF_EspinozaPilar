@@ -3,24 +3,25 @@ const ReactDOM = require('react-dom');
 const { createBrowserRouter, RouterProvider } = require('react-router-dom');
 
 const PageHome = require('./pages/home');
-const PageNuevoMusico = require('./pages/nuevo-musico');
-const PageEditarMusico = require('./pages/editar-musico');
-const PageEditarInstrumento = require('./pages/editar-instrumento');
-const PageNuevoInstrumento = require('./pages/nuevo-instrumento');
-const PageVerBanda = require('./pages/ver-banda');
-const PageNuevaBanda = require('./pages/nueva-banda');
-const NuevoIntegrantePage = require('./pages/nuevo-integrante');
+const PageNuevoCliente = require('./pages/nuevo-cliente');
+const PageNuevoProducto= require('./pages/nuevo-producto');
+const PageNuevoVendedor = require('./pages/nuevo-vendedor');
+const PageNuevaVenta = require('./pages/nueva-venta');
+const PageEditarCliente = require('./pages/editar-cliente');
+const PageEditarProducto = require('./pages/editar-musico');
+const PageVerVendedor= require('./pages/ver-vendedor')
+
 
 
 const router = createBrowserRouter([
 	{ path: '/', element: <PageHome /> },
-	{ path: '/editar-musico/:id', element: <PageEditarMusico /> },
-	{ path: '/nuevo-musico', element: <PageNuevoMusico /> },
-	{ path: '/editar-instrumento/:id', element: <PageEditarInstrumento /> },
-	{ path: '/nuevo-instrumento', element: <PageNuevoInstrumento /> },
-	{ path: '/nueva-banda', element: <PageNuevaBanda /> },
-	{ path: '/ver-banda/:id', element: <PageVerBanda /> },
-	{ path: '/ver-banda/:id/nuevo-integrante', element: <NuevoIntegrantePage /> },
+	{ path: '/editar-cliente/:id', element: <PageEditarCliente /> },
+	{ path: '/nuevo-cliente', element: <PageNuevoCliente /> },
+	{ path: '/editar-producto/:id', element: <PageEditarProducto /> },
+	{ path: '/nuevo-producto', element: <PageNuevoProducto /> },
+	{ path: '/nuevo-vendedor', element: <PageNuevoVendedor /> },
+	{ path: '/ver-vendedor/:id', element: <PageVerVendedor /> },
+	{ path: '/nuevo-vendedor/:id/nuevo-venta', element: <PageNuevoVendedor /> },
 
 ]);
 
