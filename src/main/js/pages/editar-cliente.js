@@ -32,7 +32,7 @@ function PageEditarCliente() {
             <h1>Editar Cliente</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="nombre">Nombre</label>
-                <input type="text" id="nombre" name="nombre" value={musico.cliente} onChange={(e) => setCliente({...cliente, nombre: e.target.value })} />
+                <input type="text" id="nombre" name="nombre" value={cliente.nombre} onChange={(e) => setCliente({...cliente, nombre: e.target.value })} />
                 <input type="submit" value="Editar Cliente" />
             </form>
             <hr />

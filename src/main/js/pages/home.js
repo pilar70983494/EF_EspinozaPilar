@@ -5,16 +5,16 @@ const {Link} = require('react-router-dom');
 class PageHome extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { productos: [], clientes: [], vendedor: [] };
+		this.state = { productos: [], clientes: [], vendedores: [] };
 	}
 	componentDidMount() {
 		client({ method: 'GET', path: '/api/productos' }).done(response => {
 			this.setState({ productos: response.entity._embedded.productos });
 		});
-		client({ method: 'GET', path: '/api/productos' }).done(response => {
+		client({ method: 'GET', path: '/api/clientes' }).done(response => {
 			this.setState({ clientes: response.entity._embedded.clientes });
 		});
-		client({ method: 'GET', path: '/api/bandas' }).done(response => {
+		client({ method: 'GET', path: '/api/vendedores' }).done(response => {
 			this.setState({ vendedores: response.entity._embedded.vendedores });
 		});
 	}

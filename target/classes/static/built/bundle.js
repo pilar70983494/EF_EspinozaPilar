@@ -40932,7 +40932,7 @@ function PageEditarCliente() {
     type: "text",
     id: "nombre",
     name: "nombre",
-    value: musico.cliente,
+    value: cliente.nombre,
     onChange: function onChange(e) {
       return setCliente(_objectSpread(_objectSpread({}, cliente), {}, {
         nombre: e.target.value
@@ -41065,7 +41065,7 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       productos: [],
       clientes: [],
-      vendedor: []
+      vendedores: []
     };
     return _this;
   }
@@ -41083,7 +41083,7 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
       });
       client({
         method: 'GET',
-        path: '/api/productos'
+        path: '/api/clientes'
       }).done(function (response) {
         _this2.setState({
           clientes: response.entity._embedded.clientes
@@ -41091,7 +41091,7 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
       });
       client({
         method: 'GET',
-        path: '/api/bandas'
+        path: '/api/vendedores'
       }).done(function (response) {
         _this2.setState({
           vendedores: response.entity._embedded.vendedores
