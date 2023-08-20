@@ -26,21 +26,21 @@ class PageHome extends React.Component {
 				<div style={{"width": "100%","display": "flex"}} >
 
 					<div style={{"width": "calc(100%/3)"}}>
-						<Titulo entidad="Producto" emoji="🎸" />
+						<Titulo entidad="Producto" emoji="📦" />
 						<ProductoList productos={this.state.productos} />
 						<br />
 						<Link to="/nuevo-producto">Nuevo Producto</Link>
 					</div>
 
 					<div style={{"width": "calc(100%/3)"}}>
-						<Titulo entidad="Cliente" emoji="🎵" />
+						<Titulo entidad="Cliente" emoji="🧖" />
 						<ClienteList clientes={this.state.clientes} />
 						<br />
 						<Link to="/nuevo-cliente">Nuevo Cliente</Link>
 					</div>
 
 					<div style={{"width": "calc(100%/3)"}}>
-						<Titulo entidad="Vendedor" emoji="👩🏼‍🎤" />
+						<Titulo entidad="Vendedor" emoji="🧑‍💼" />
 						<VendedorList vendedores={this.state.vendedores} />
 						<br />
 						<Link to="/nuevo-vendedor">Nuevo Vendedor</Link>
