@@ -22,12 +22,12 @@ public class HomeController {
         return "index";
     }
 
-    // @GetMapping(path = "/api/bandas/{id}/formacion")
-    // public @ResponseBody List<Map<String, Object>> formacion(@PathVariable Integer id){
-    //     String sql = "SELECT integrante.id as ID, musico.nombre as MUSICO, instrumento.nombre as INSTRUMENTO FROM integrante JOIN musico ON integrante.id_musico = musico.id JOIN instrumento ON integrante.id_instrumento = instrumento.id WHERE integrante.id_banda = ?";
-    //     List<Map<String, Object>> queryResult = jdbcTemplate.queryForList(sql, id);
-    //     return queryResult;
-    // }
+    @GetMapping(path = "/api/ventas/{id}/formacion")
+    public @ResponseBody List<Map<String, Object>> formacion(@PathVariable Integer id){
+        String sql = "SELECT venta.id as ID, cliente.nombre as CLIENTE, producto.nombre as PRODUCTO FROM venta JOIN cliente ON venta.id_cliente = cliente.id JOIN producto ON venta.id_producto = producto.id WHERE venta.id_venta = ?";
+        List<Map<String, Object>> queryResult = jdbcTemplate.queryForList(sql, id);
+        return queryResult;
+    }
     /**
      * [
      *   {"campo": "Valor"},
@@ -35,6 +35,4 @@ public class HomeController {
      * ]
      * List<Map<String, Object>>
      */
-
-
 }
