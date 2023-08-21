@@ -46,7 +46,7 @@ const PageNuevaVenta = () => {
             response.entity._embedded.productos.map(producto => {
                 productos2.push({value: producto._links.self.href.split('/').slice(-1), label: producto.nombre})
             })
-            setIdProducto(productos2)
+            setProductos(productos2)
         })
 
     },[])
@@ -58,9 +58,9 @@ const PageNuevaVenta = () => {
 
                 <label htmlFor='cliente'>Cliente</label>
                 <select name="cliente" id="cliente" onChange={(e)=>{setIdCliente(e.target.value)}}>
-                    {clientes.map(musico => {	
+                    {clientes.map(cliente => {	
                         return (
-                            <option key={musico.value} value={musico.value}>{musico.label}</option>
+                            <option key={cliente.value} value={cliente.value}>{cliente.label}</option>
                         )
                     })}
                 </select>
@@ -74,7 +74,7 @@ const PageNuevaVenta = () => {
                     })}
                 </select>
 
-                <input type="submit" value="Nuevo Venta" />
+                <input type="submit" value="Nueva Venta" />
 
             </form>
             <Link to="/">Volver</Link>

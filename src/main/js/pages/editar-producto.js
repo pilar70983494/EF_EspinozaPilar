@@ -3,7 +3,7 @@ const {useState, useEffect} = require('react');
 const { Link, useParams } = require('react-router-dom');
 const client = require('../client');
 
-const EditarProductoPage = () => {
+const PageEditarProducto = () => {
 
     const [producto, setProducto] = useState({});
 
@@ -47,4 +47,4 @@ const EditarProductoPage = () => {
     );
 }
 
-module.exports = EditarProductoPage;
+module.exports = PageEditarProducto;

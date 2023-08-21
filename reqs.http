@@ -2,6 +2,10 @@
 @productos = {{server}}/api/productos
 @vendedores = {{server}}/api/vendedores
 ###
+@ventas = {{server}}/api/ventas
+###
+GET {{ventas}}
+###
 GET {{productos}}
 ###
 POST {{productos}}

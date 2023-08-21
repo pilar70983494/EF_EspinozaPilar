@@ -8,7 +8,7 @@ const PageNuevoProducto= require('./pages/nuevo-producto');
 const PageNuevoVendedor = require('./pages/nuevo-vendedor');
 const PageNuevaVenta = require('./pages/nueva-venta');
 const PageEditarCliente = require('./pages/editar-cliente');
-const PageEditarProducto = require('./pages/editar-musico');
+const PageEditarProducto = require('./pages/editar-producto');
 const PageVerVendedor= require('./pages/ver-vendedor')
 
 
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
 	{ path: '/nuevo-vendedor', element: <PageNuevoVendedor /> },
 	{ path: '/ver-vendedor/:id', element: <PageVerVendedor /> },
 	{ path: '/nuevo-vendedor/:id/nuevo-venta', element: <PageNuevoVendedor /> },
-
+	{ path: '/nueva-venta', element: <PageNuevaVenta /> },
 ]);
 
 

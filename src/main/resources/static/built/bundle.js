@@ -40805,7 +40805,7 @@ var PageNuevoProducto = __webpack_require__(/*! ./pages/nuevo-producto */ "./src
 var PageNuevoVendedor = __webpack_require__(/*! ./pages/nuevo-vendedor */ "./src/main/js/pages/nuevo-vendedor.js");
 var PageNuevaVenta = __webpack_require__(/*! ./pages/nueva-venta */ "./src/main/js/pages/nueva-venta.js");
 var PageEditarCliente = __webpack_require__(/*! ./pages/editar-cliente */ "./src/main/js/pages/editar-cliente.js");
-var PageEditarProducto = __webpack_require__(/*! ./pages/editar-musico */ "./src/main/js/pages/editar-musico.js");
+var PageEditarProducto = __webpack_require__(/*! ./pages/editar-producto */ "./src/main/js/pages/editar-producto.js");
 var PageVerVendedor = __webpack_require__(/*! ./pages/ver-vendedor */ "./src/main/js/pages/ver-vendedor.js");
 var router = createBrowserRouter([{
   path: '/',
@@ -40831,6 +40831,9 @@ var router = createBrowserRouter([{
 }, {
   path: '/nuevo-vendedor/:id/nuevo-venta',
   element: /*#__PURE__*/React.createElement(PageNuevoVendedor, null)
+}, {
+  path: '/nueva-venta',
+  element: /*#__PURE__*/React.createElement(PageNuevaVenta, null)
 }]);
 ReactDOM.render( /*#__PURE__*/React.createElement(React.StrictMode, null, /*#__PURE__*/React.createElement(RouterProvider, {
   router: router
@@ -40949,10 +40952,10 @@ module.exports = PageEditarCliente;
 
 /***/ }),
 
-/***/ "./src/main/js/pages/editar-musico.js":
-/*!********************************************!*\
-  !*** ./src/main/js/pages/editar-musico.js ***!
-  \********************************************/
+/***/ "./src/main/js/pages/editar-producto.js":
+/*!**********************************************!*\
+  !*** ./src/main/js/pages/editar-producto.js ***!
+  \**********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -40969,36 +40972,34 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var _require = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js"),
-  Link = _require.Link,
-  useParams = _require.useParams;
+var _require = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
+  useState = _require.useState,
+  useEffect = _require.useEffect;
+var _require2 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js"),
+  Link = _require2.Link,
+  useParams = _require2.useParams;
 var client = __webpack_require__(/*! ../client */ "./src/main/js/client.js");
-var _require2 = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
-  useState = _require2.useState,
-  useEffect = _require2.useEffect;
-function PageEditarMusico() {
+var PageEditarProducto = function PageEditarProducto() {
   var _useState = useState({}),
     _useState2 = _slicedToArray(_useState, 2),
-    musico = _useState2[0],
-    setMusico = _useState2[1];
-
-  // getting id param from route
+    producto = _useState2[0],
+    setProducto = _useState2[1];
   var _useParams = useParams(),
     id = _useParams.id;
   useEffect(function () {
     client({
       method: 'GET',
-      path: '/api/musicos/' + id
+      path: '/api/productos/' + id
     }).done(function (response) {
-      setMusico(response.entity);
+      setProducto(response.entity);
     });
   }, []);
   var handleSubmit = function handleSubmit(event) {
     event.preventDefault();
     client({
       method: 'PATCH',
-      path: '/api/musicos/' + id,
-      entity: musico,
+      path: '/api/productos/' + id,
+      entity: producto,
       headers: {
         'Content-Type': 'application/json'
       }
@@ -41006,7 +41007,7 @@ function PageEditarMusico() {
       return window.location = "/";
     });
   };
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Editar M\xFAsico"), /*#__PURE__*/React.createElement("form", {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Editar Productos"), /*#__PURE__*/React.createElement("form", {
     onSubmit: handleSubmit
   }, /*#__PURE__*/React.createElement("label", {
     htmlFor: "nombre"
@@ -41014,20 +41015,44 @@ function PageEditarMusico() {
     type: "text",
     id: "nombre",
     name: "nombre",
-    value: musico.nombre,
+    value: producto.nombre,
     onChange: function onChange(e) {
-      return setMusico(_objectSpread(_objectSpread({}, musico), {}, {
+      return setProducto(_objectSpread(_objectSpread({}, producto), {}, {
         nombre: e.target.value
+      }));
+    }
+  }), /*#__PURE__*/React.createElement("label", {
+    htmlFor: "categoria"
+  }, "Categor\xEDa"), /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    id: "categoria",
+    name: "categoria",
+    value: producto.categoria,
+    onChange: function onChange(e) {
+      return setProducto(_objectSpread(_objectSpread({}, producto), {}, {
+        categoria: e.target.value
+      }));
+    }
+  }), /*#__PURE__*/React.createElement("label", {
+    htmlFor: "descripcion"
+  }, "Descripci\xF3n"), /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    id: "descripcion",
+    name: "descripcion",
+    value: producto.descripcion,
+    onChange: function onChange(e) {
+      return setProducto(_objectSpread(_objectSpread({}, producto), {}, {
+        descripcion: e.target.value
       }));
     }
   }), /*#__PURE__*/React.createElement("input", {
     type: "submit",
-    value: "Editar M\xFAsico"
+    value: "Editar Producto"
   })), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement(Link, {
     to: "/"
   }, "Volver"));
-}
-module.exports = PageEditarMusico;
+};
+module.exports = PageEditarProducto;
 
 /***/ }),
 
@@ -41356,7 +41381,7 @@ var PageNuevaVenta = function PageNuevaVenta() {
           label: producto.nombre
         });
       });
-      setIdProducto(productos2);
+      setProductos(productos2);
     });
   }, []);
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Nueva Venta"), /*#__PURE__*/React.createElement("form", {
@@ -41369,11 +41394,11 @@ var PageNuevaVenta = function PageNuevaVenta() {
     onChange: function onChange(e) {
       setIdCliente(e.target.value);
     }
-  }, clientes.map(function (musico) {
+  }, clientes.map(function (cliente) {
     return /*#__PURE__*/React.createElement("option", {
-      key: musico.value,
-      value: musico.value
-    }, musico.label);
+      key: cliente.value,
+      value: cliente.value
+    }, cliente.label);
   })), /*#__PURE__*/React.createElement("label", null, "Producto"), /*#__PURE__*/React.createElement("select", {
     name: "producto",
     id: "producto",
@@ -41387,7 +41412,7 @@ var PageNuevaVenta = function PageNuevaVenta() {
     }, producto.label);
   })), /*#__PURE__*/React.createElement("input", {
     type: "submit",
-    value: "Nuevo Venta"
+    value: "Nueva Venta"
   })), /*#__PURE__*/React.createElement(Link, {
     to: "/"
   }, "Volver"));
@@ -41667,7 +41692,7 @@ var PageVerVendedor = function PageVerVendedor() {
     }, /*#__PURE__*/React.createElement("td", null, ventas.CLIENTE), /*#__PURE__*/React.createElement("td", null, ventas.PRODUCTO));
   }))), /*#__PURE__*/React.createElement(Link, {
     to: "/ver-vendedor/".concat(id, "/nuevo-venta")
-  }, "Nuevo Venta"), " | ", /*#__PURE__*/React.createElement(Link, {
+  }, "Nueva Venta"), " | ", /*#__PURE__*/React.createElement(Link, {
     to: "/"
   }, "Volver"));
 };
